@@ -3,7 +3,8 @@ from django.shortcuts import render_to_response
 import datetime
 
 def hello(request):
-    return HttpResponse("Hello world")
+    ua = request.META.get('HTTP_USER_AGENT', 'unknown')
+    return HttpResponse("Your browser is %s" % ua)
 
 
 
@@ -20,3 +21,4 @@ def hours_ahead(request, offset):
     assert False
     html = "<html><body>In %s hour(s), it will be %s.</body></html>" % (offset, dt)
     return HttpResponse(html)
+
